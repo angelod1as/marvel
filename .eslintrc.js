@@ -39,6 +39,8 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/no-explicit-any': 0,
+    'react/self-closing-comp': 1,
+    '@typescript-eslint/no-var-requires': 0,
     'jsx-a11y/anchor-is-valid': [
       'error',
       {

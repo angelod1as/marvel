@@ -41,7 +41,7 @@ const GlobalStyle = createGlobalStyle<GlobalProps>`
   }
 
   h1, h2, h3 {
-    margin: 60px 0 30px 0;
+    margin: 20px 0;
     padding: 0;
     font-family: 'Exo', sans-serif;
     font-weight: 700;
