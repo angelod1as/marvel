@@ -2,7 +2,7 @@ import axios from 'axios'
 // import md5 from 'blueimp-md5'
 
 const marvelQuery = async (character: string) => {
-  const url = 'http://gateway.marvel.com/v1/public/characters'
+  const url = 'https://gateway.marvel.com/v1/public/characters'
 
   console.log(character)
 
