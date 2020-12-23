@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import img from './bg-min.jpg'
 
 export const Div = styled.div`
   display: flex;

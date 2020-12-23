@@ -1,7 +1,6 @@
-import { forwardRef, Dispatch, SetStateAction, useCallback } from 'react'
+import { useCallback } from 'react'
 import Button from '@components/Button'
 import { ModalWrapper, Modal, Inner, List, Close } from './styles'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { DrinkStateProps } from '@pages/_app'
 
@@ -27,7 +26,7 @@ export default function DrinkList({
       setChosenDrink(chosen)
       router.push(strDrink)
     },
-    [router]
+    [router, drinkList, setChosenDrink]
   )
 
   return (

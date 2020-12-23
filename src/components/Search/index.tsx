@@ -1,6 +1,4 @@
 import Button from '@components/Button'
-import axios from 'axios'
-import { useRouter } from 'next/router'
 import { Dispatch, SetStateAction, useCallback, useState } from 'react'
 import query from 'src/functions/query'
 import { DrinkProps } from 'src/functions/transformDrink'

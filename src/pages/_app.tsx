@@ -6,6 +6,7 @@ import GlobalStyle from '@styles/GlobalStyle'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import Loading from '@components/Loading'
 import { DrinkProps } from 'src/functions/transformDrink'
+import metatags from '@functions/metatags'
 
 export interface DrinkStateProps {
   drinkList: DrinkProps[]
@@ -28,6 +29,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
+        {metatags()}
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,500;0,700&display=swap"

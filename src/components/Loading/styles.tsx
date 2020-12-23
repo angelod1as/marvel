@@ -1,5 +1,4 @@
 import styled from '@styles/styled-components'
-import { keyframes } from 'styled-components'
 
 export const Wrapper = styled.div`
   text-align: center;
@@ -11,11 +10,6 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
-
-const rotation = keyframes`
-  0% { transform:rotate(0deg); }
-  100% { transform: rotate(360deg); }
 `
 
 export const ImgWrapper = styled.div`
@@ -37,9 +31,6 @@ export const Img = styled.div`
     text-transform: uppercase;
     font-weight: bold;
   }
-
-  // Rotation below should be template str
-  /* animation: rotation 3s infinite linear; */
 `
 
 export const Background = styled.div`
