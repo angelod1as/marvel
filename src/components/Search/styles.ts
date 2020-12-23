@@ -5,12 +5,13 @@ export const Flex = styled.div`
 `
 
 export const Wrapper = styled.div`
-  margin: auto auto 50px auto;
+  margin-bottom: 50px;
   max-width: 400px;
   padding: 10px;
   border-radius: 5px;
 `
 export const Label = styled.label`
+  color: white;
   text-align: left;
   display: block;
   margin-bottom: 5px;
@@ -25,4 +26,10 @@ export const Input = styled.input`
   border: none;
   padding: 10px;
   color: black;
+`
+export const Error = styled.p`
+  color: white;
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8em;
 `

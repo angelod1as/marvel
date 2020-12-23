@@ -1,5 +1,10 @@
 import { StyledButton } from './styles'
 
-export default function Button({ children, onClick }) {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  onClick?: () => void
+}
+
+export default function Button({ children, onClick }: ButtonProps) {
   return <StyledButton {...{ onClick }}>{children}</StyledButton>
 }

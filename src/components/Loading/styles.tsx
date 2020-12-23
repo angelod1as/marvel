@@ -2,6 +2,7 @@ import styled from '@styles/styled-components'
 import { keyframes } from 'styled-components'
 
 export const Wrapper = styled.div`
+  text-align: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -28,18 +29,23 @@ export const ImgWrapper = styled.div`
   justify-content: center;
 `
 
-export const Img = styled.img`
-  width: 30%;
-  height: auto;
+export const Img = styled.div`
   z-index: 5;
 
-  animation: ${rotation} 3s infinite linear;
+  p {
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  // Rotation below should be template str
+  /* animation: rotation 3s infinite linear; */
 `
 
 export const Background = styled.div`
   z-index: 1;
   background-color: black;
-  opacity: 0.8;
+  opacity: 0.9;
   width: 100vw;
   height: 100vh;
   display: flex;

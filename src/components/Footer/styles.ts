@@ -10,4 +10,8 @@ export const Wrapper = styled.footer`
   left: 0;
   width: 100%;
   text-align: center;
+
+  a {
+    color: white;
+  }
 `

@@ -1,10 +1,11 @@
 const color = {
-  color: '#333333',
   white: '#FFFFFF',
   black: '#000000',
   gray: '#CCCCCC',
   darkgray: '#A9A9A9',
   darkergray: '#8B8B8B',
+  olive: '#6f745e',
+  red: '#b22c21',
 }
 
 const font = {
