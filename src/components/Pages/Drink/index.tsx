@@ -3,7 +3,8 @@ import Logo from '@components/Logo'
 import { DrinkStateProps } from '@pages/_app'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import query from 'src/functions/query'
+// import query from 'src/functions/query'
+// URGENT: query
 import transformDrink, {
   newDrinkProps,
   DrinkProps,
@@ -32,7 +33,8 @@ export default function Drink({ chosenDrink, setLoaded }: DrinkStateProps) {
 
     const fetchData = async (queryDrink: string) => {
       try {
-        const response = await query(queryDrink)
+        // const response = await query(queryDrink)
+        const response = null
         const drinks: DrinkProps[] | null = response
 
         if (drinks && drinks !== null) {

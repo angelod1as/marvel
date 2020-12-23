@@ -1,6 +1,6 @@
 import Button from '@components/Button'
+import axios from 'axios'
 import { Dispatch, SetStateAction, useCallback, useState } from 'react'
-import query from 'src/functions/query'
 import { DrinkProps } from 'src/functions/transformDrink'
 import { Wrapper, Label, Input, Flex, Error } from './styles'
 
@@ -17,7 +17,12 @@ export default function Search({ setLoaded, setDrinkList }: SearchProps) {
     setLoaded(false)
 
     try {
-      const response = await query(drink)
+      const response = await axios.get(`/api/query`, {
+        params: {
+          query: drink,
+        },
+      })
+      console.log(response)
       const drinks: DrinkProps[] | null = response?.data?.drinks
 
       if (drinks && drinks !== null) {
