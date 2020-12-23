@@ -9,7 +9,7 @@ export default function metatags() {
       <meta name="subject" content="See the recipe of your favourite drink" />
       <meta name="language" content="EN" />
       <meta name="robots" content="index,follow" />
-      <meta name="author" content="Angelo Dias, oiangelodias@gmail.com" />
+      <meta name="author" content="Angelo Dias <oiangelodias@gmail.com>" />
       <meta name="url" content="https://chooseyourpoison.vercel.app/" />
       <meta
         name="identifier-URL"
