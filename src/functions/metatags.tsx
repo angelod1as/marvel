@@ -1,34 +1,49 @@
 export default function metatags() {
   return (
     <>
-      <meta name="keywords" content="drinks, api, react" />
+      {/* Primary Meta Tags */}
+      <title>Choose Your Poison, search your drinks!</title>
+      <meta name="title" content="Choose Your Poison, search your drinks!" />
       <meta
         name="description"
         content="Choose your drink and see it's recipe and ingredients"
       />
-      <meta name="subject" content="See the recipe of your favourite drink" />
-      <meta name="language" content="EN" />
-      <meta name="robots" content="index,follow" />
-      <meta name="author" content="Angelo Dias, oiangelodias@gmail.com" />
-      <meta name="url" content="https://chooseyourpoison.vercel.app/" />
+      {/* Open Graph / Facebook */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://chooseyourpoison.vercel.app/" />
       <meta
-        name="identifier-URL"
-        content="https://chooseyourpoison.vercel.app/"
+        property="og:title"
+        content="Choose Your Poison, search your drinks!"
       />
-
-      <meta name="og:title" content="Choose Your Poison" />
-      <meta name="og:type" content="website" />
-      <meta name="og:url" content="https://chooseyourpoison.vercel.app/" />
       <meta
-        name="og:image"
+        property="og:description"
+        content="Choose your drink and see it's recipe and ingredients"
+      />
+      <meta
+        property="og:image"
         content="https://media.giphy.com/media/l3fQaE2lbSAPUnB04/giphy.gif"
       />
-      <meta name="og:site_name" content="Choose Your Poison" />
+      {/* Twitter */}
+      <meta property="twitter:card" content="summary_large_image" />
       <meta
-        name="og:description"
-        content="See the recipe of your favourite drink"
+        property="twitter:url"
+        content="https://chooseyourpoison.vercel.app/"
       />
-      <meta name="og:email" content="oiangelodias@gmail.com" />
+      <meta
+        property="twitter:title"
+        content="Choose Your Poison, search your drinks!"
+      />
+      <meta
+        property="twitter:description"
+        content="Choose your drink and see it's recipe and ingredients"
+      />
+      <meta
+        property="twitter:image"
+        content="https://media.giphy.com/media/l3fQaE2lbSAPUnB04/giphy.gif"
+      />
+      <meta name="keywords" content="drinks, api, react" />
+      <meta name="author" content="Angelo Dias <oiangelodias@gmail.com>" />
+      <meta name="url" content="https://chooseyourpoison.vercel.app/" />
     </>
   )
 }
