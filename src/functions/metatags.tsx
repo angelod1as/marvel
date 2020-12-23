@@ -19,6 +19,8 @@ export default function metatags() {
         content="https://chooseyourpoison.vercel.app/"
       />
 
+      <html prefix="og: http://ogp.me/ns#" />
+      
       <meta name="og:title" content="Choose Your Poison" />
       <meta name="og:type" content="website" />
       <meta name="og:url" content="https://chooseyourpoison.vercel.app/" />
