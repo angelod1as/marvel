@@ -14,7 +14,7 @@ export const Container = styled.div`
   background-color: black;
 `
 
-export const DrinkInfo = styled.div`
+export const HeroInfo = styled.div`
   margin-bottom: 70px;
 `
 

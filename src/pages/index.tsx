@@ -1,6 +1,6 @@
 import Home from '@components/Pages/Home'
-import { DrinkStateProps } from './_app'
+import { HeroStateProps } from './_app'
 
-export default function Index(props: DrinkStateProps) {
+export default function Index(props: HeroStateProps) {
   return <Home {...props} />
 }

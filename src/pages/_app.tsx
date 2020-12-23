@@ -5,21 +5,21 @@ import { theme } from '@styles/theme'
 import GlobalStyle from '@styles/GlobalStyle'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import Loading from '@components/Loading'
-import { DrinkProps } from 'src/functions/transformDrink'
 import metatags from '@functions/metatags'
+import { HeroProps } from '@components/Pages/Hero'
 
-export interface DrinkStateProps {
-  drinkList: DrinkProps[]
-  setDrinkList: Dispatch<SetStateAction<DrinkProps[]>>
-  chosenDrink: DrinkProps
-  setChosenDrink: Dispatch<SetStateAction<DrinkProps>>
+export interface HeroStateProps {
+  heroList: HeroProps[]
+  setHeroList: Dispatch<SetStateAction<HeroProps[]>>
+  chosenHero: HeroProps
+  setChosenHero: Dispatch<SetStateAction<HeroProps>>
   loaded: boolean
   setLoaded: Dispatch<SetStateAction<boolean>>
 }
 
 function App({ Component, pageProps }: AppProps) {
-  const [drinkList, setDrinkList] = useState<DrinkProps[]>([])
-  const [chosenDrink, setChosenDrink] = useState()
+  const [heroList, setHeroList] = useState<HeroProps[]>([])
+  const [chosenHero, setChosenHero] = useState()
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
@@ -41,10 +41,10 @@ function App({ Component, pageProps }: AppProps) {
         <Component
           {...pageProps}
           {...{
-            drinkList,
-            setDrinkList,
-            chosenDrink,
-            setChosenDrink,
+            heroList,
+            setHeroList,
+            chosenHero,
+            setChosenHero,
             loaded,
             setLoaded,
           }}

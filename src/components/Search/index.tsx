@@ -1,16 +1,16 @@
 import Button from '@components/Button'
+import { HeroProps } from '@components/Pages/Hero'
 import axios from 'axios'
 import { Dispatch, SetStateAction, useCallback, useState } from 'react'
-import { DrinkProps } from 'src/functions/transformDrink'
 import { Wrapper, Label, Input, Flex, Error } from './styles'
 
 interface SearchProps {
   setLoaded: Dispatch<SetStateAction<boolean>>
-  setDrinkList: Dispatch<SetStateAction<DrinkProps[]>>
+  setHeroList: Dispatch<SetStateAction<HeroProps[]>>
 }
 
-export default function Search({ setLoaded, setDrinkList }: SearchProps) {
-  const [drink, setDrink] = useState('')
+export default function Search({ setLoaded, setHeroList }: SearchProps) {
+  const [hero, setHero] = useState('')
   const [error, setError] = useState<Error | 'not-found' | null>(null)
 
   const handleClick = useCallback(async () => {
@@ -19,14 +19,14 @@ export default function Search({ setLoaded, setDrinkList }: SearchProps) {
     try {
       const response = await axios.get(`/api/query`, {
         params: {
-          query: drink,
+          query: hero,
         },
       })
       console.log(response)
-      const drinks: DrinkProps[] | null = response?.data?.drinks
+      const heros: HeroProps[] | null = response?.data?.heros
 
-      if (drinks && drinks !== null) {
-        setDrinkList(drinks)
+      if (heros && heros !== null) {
+        setHeroList(heros)
         setLoaded(true)
       } else {
         setError('not-found')
@@ -37,19 +37,19 @@ export default function Search({ setLoaded, setDrinkList }: SearchProps) {
       setError(error)
       setLoaded(true)
     }
-  }, [drink, setLoaded, setDrinkList])
+  }, [hero, setLoaded, setHeroList])
 
   const handleInputChange = useCallback(({ target: { value } }) => {
-    setDrink(value)
+    setHero(value)
   }, [])
 
   return (
     <Wrapper>
-      <Label>What's your drink?</Label>
+      <Label>What's your hero?</Label>
       <Flex>
         <Input
           placeholder="Margarita"
-          value={drink}
+          value={hero}
           onChange={handleInputChange}
         />
         <Button onClick={handleClick}>Go</Button>
@@ -57,7 +57,7 @@ export default function Search({ setLoaded, setDrinkList }: SearchProps) {
       {error && (
         <Error>
           {error === 'not-found'
-            ? 'Drink not found, try another one'
+            ? 'Hero not found, try another one'
             : 'Oops, something went wrong, try again'}
         </Error>
       )}
