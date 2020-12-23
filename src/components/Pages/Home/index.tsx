@@ -1,20 +1,27 @@
-import Loading from '@components/Loading'
 import Logo from '@components/Logo'
 import Search from '@components/Search'
 import Footer from '@components/Footer'
-import Container from '@components/Container'
-import { Content } from './styles'
+import { Container, Img } from './styles'
 
-export default function Home() {
-  const loaded = true
+import drink from './drink.gif'
+import DrinkList from '@components/DrinkList'
+import { DrinkStateProps } from '@pages/_app'
 
+export default function Home({
+  drinkList,
+  setDrinkList,
+  setChosenDrink,
+  setLoaded,
+}: DrinkStateProps) {
   return (
     <Container>
       <Logo />
-      <Content>
-        {loaded ? <Search /> : <Loading />}
-        <Footer />
-      </Content>
+      <Img src={drink} alt="" />
+      <Search {...{ setLoaded, setDrinkList, setChosenDrink }} />
+      <Footer />
+      {drinkList.length > 0 && (
+        <DrinkList {...{ setDrinkList, drinkList, setChosenDrink }} />
+      )}
     </Container>
   )
 

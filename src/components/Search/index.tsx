@@ -1,36 +1,61 @@
 import Button from '@components/Button'
-import { useCallback, useState } from 'react'
-import marvelQuery from 'src/utils/marvelQuery'
-import { Wrapper, Label, Input, Flex } from './styles'
+import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import query from 'src/functions/query'
+import { DrinkProps } from 'src/functions/transformDrink'
+import { Wrapper, Label, Input, Flex, Error } from './styles'
 
-export default function Search() {
-  const [character, setCharacter] = useState('')
+interface SearchProps {
+  setLoaded: Dispatch<SetStateAction<boolean>>
+  setDrinkList: Dispatch<SetStateAction<DrinkProps[]>>
+}
+
+export default function Search({ setLoaded, setDrinkList }: SearchProps) {
+  const [drink, setDrink] = useState('')
+  const [error, setError] = useState<Error | 'not-found' | null>(null)
 
   const handleClick = useCallback(async () => {
+    setLoaded(false)
+
     try {
-      const response = await marvelQuery(character)
-      console.log(response)
+      const response = await query(drink)
+      const drinks: DrinkProps[] | null = response?.data?.drinks
+
+      if (drinks && drinks !== null) {
+        setDrinkList(drinks)
+        setLoaded(true)
+      } else {
+        setError('not-found')
+        setLoaded(true)
+      }
     } catch (error) {
       console.log(error)
+      setError(error)
+      setLoaded(true)
     }
-  }, [character])
+  }, [drink, setLoaded, setDrinkList])
 
   const handleInputChange = useCallback(({ target: { value } }) => {
-    setCharacter(value)
+    setDrink(value)
   }, [])
 
-  console.log(process.env.NEXT_PUBLIC_MARVEL_API)
   return (
     <Wrapper>
-      <Label>Choose your hero</Label>
+      <Label>What's your poison?</Label>
       <Flex>
         <Input
-          placeholder="Iron Man"
-          value={character}
+          placeholder="Margarita"
+          value={drink}
           onChange={handleInputChange}
         />
         <Button onClick={handleClick}>Go</Button>
       </Flex>
+      {error && (
+        <Error>
+          {error === 'not-found'
+            ? 'Drink not found, try another one'
+            : 'Oops, something went wrong, try again'}
+        </Error>
+      )}
     </Wrapper>
   )
 }

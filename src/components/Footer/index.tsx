@@ -3,7 +3,9 @@ import { Wrapper } from './styles'
 export default function Footer() {
   return (
     <Wrapper>
-      <a href="http://marvel.com">Data provided by Marvel. © 2020 MARVEL</a>
+      <a href="https://www.thecocktaildb.com/" target="_blank" rel="noreferrer">
+        Data provided by The Cocktail DB
+      </a>
     </Wrapper>
   )
 }
