@@ -40,7 +40,7 @@ export default function Search({ setLoaded, setDrinkList }: SearchProps) {
 
   return (
     <Wrapper>
-      <Label>What's your poison?</Label>
+      <Label>What's your drink?</Label>
       <Flex>
         <Input
           placeholder="Margarita"
