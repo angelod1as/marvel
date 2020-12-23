@@ -1,7 +1,10 @@
 export default function metatags() {
   return (
     <>
+      <title>Choose Your Poison, search your drinks!</title>
       <meta name="keywords" content="drinks, api, react" />
+      <meta name="title" content="Choose Your Poison" />
+      <meta name="description" content="See the recipe of your favourite drink" />
       <meta
         name="description"
         content="Choose your drink and see it's recipe and ingredients"
