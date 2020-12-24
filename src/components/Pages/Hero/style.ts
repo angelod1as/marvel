@@ -58,25 +58,3 @@ export const Error = styled.div`
 export const StyledButton = styled(Button)`
   margin-bottom: 100px;
 `
-
-export const Background = styled.div`
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 0;
-  padding: 120px 15px 0 15px;
-  opacity: 0.3;
-
-  img {
-    height: 80%;
-  }
-`
-
-export const Captain = styled.img``
-
-export const Iron = styled.img``

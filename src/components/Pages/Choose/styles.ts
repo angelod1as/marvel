@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  z-index: 1;
   height: 100%;
   width: 100%;
   padding-top: 20px;
 
   color: white;
-  background-color: black;
 `
 
 export const Title = styled.h2`
@@ -29,7 +29,6 @@ export const Title = styled.h2`
 
 export const List = styled.div`
   padding: 120px 30px;
-  background-color: black;
   display: flex;
   flex-direction: column;
   align-items: center;

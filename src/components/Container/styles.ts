@@ -10,8 +10,6 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 
   text-align: center;
-
-  background-color: black;
 `
 
 export const Logo = styled.h1`

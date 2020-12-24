@@ -2,22 +2,10 @@ import { HeroStateProps } from '@pages/_app'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { useMediaPredicate } from 'react-media-hook'
 
-import {
-  Error,
-  Container,
-  Img,
-  HeroInfo,
-  Title,
-  StyledButton,
-  Captain,
-  Iron,
-  Background,
-} from './style'
+import { Error, Container, Img, HeroInfo, Title, StyledButton } from './style'
 
-import captain from './america-min.png'
-import iron from './iron-min.png'
+import BackgroundHeroes from '@components/BackgroundHeroes'
 
 export interface HeroProps {
   id: number
@@ -38,8 +26,6 @@ export default function Hero({
   const [hero, setHero] = useState<HeroProps>()
   const [error, setError] = useState<Error | 'not-found' | null>(null)
   const router = useRouter()
-
-  const mediaQuery = useMediaPredicate('(min-width: 700px)')
 
   const fetchData = useCallback(
     async (heroId: number) => {
@@ -98,7 +84,11 @@ export default function Hero({
               <Title>{name}</Title>
 
               <HeroInfo>
-                {path ? <Img src={`${path}.${extension}`} /> : ''}
+                {path ? (
+                  <Img src={`${path}/standard_xlarge.${extension}`} />
+                ) : (
+                  ''
+                )}
                 <p>{description || 'No description available'}</p>
 
                 <StyledButton onClick={() => router.push('/')}>
@@ -115,12 +105,7 @@ export default function Hero({
             </Error>
           )}
         </Container>
-        {mediaQuery && (
-          <Background>
-            <Captain src={captain} />
-            <Iron src={iron} />
-          </Background>
-        )}
+        <BackgroundHeroes />
       </>
     )
   }

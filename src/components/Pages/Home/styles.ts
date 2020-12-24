@@ -14,7 +14,6 @@ export const Container = styled.div`
   text-align: center;
 
   background-image: url(${img});
-  background-color: black;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;

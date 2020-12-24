@@ -1,3 +1,4 @@
+import BackgroundHeroes from '@components/BackgroundHeroes'
 import { HeroStateProps } from '@pages/_app'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -14,25 +15,32 @@ export default function Home({ heroList }: HeroStateProps) {
   }, [heroList.length, router])
 
   return (
-    <Container>
-      <Title>Choose your hero</Title>
-      <List>
-        {heroList.map(hero => {
-          const {
-            id,
-            name,
-            thumbnail: { path, extension },
-          } = hero
-          return (
-            <Link href={id.toString()} key={id}>
-              <Hero>
-                {path ? <Img src={`${path}.${extension}`} /> : ''}
-                <Name>{name}</Name>
-              </Hero>
-            </Link>
-          )
-        })}
-      </List>
-    </Container>
+    <>
+      <Container>
+        <Title>Choose your hero</Title>
+        <List>
+          {heroList.map(hero => {
+            const {
+              id,
+              name,
+              thumbnail: { path, extension },
+            } = hero
+            return (
+              <Link href={id.toString()} key={id}>
+                <Hero>
+                  {path ? (
+                    <Img src={`${path}/standard_xlarge.${extension}`} />
+                  ) : (
+                    ''
+                  )}
+                  <Name>{name}</Name>
+                </Hero>
+              </Link>
+            )
+          })}
+        </List>
+      </Container>
+      <BackgroundHeroes />
+    </>
   )
 }
