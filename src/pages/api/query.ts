@@ -7,8 +7,6 @@ export default async function queryCharacters({ query: { query } }, res) {
   const pubkey = process.env.NEXT_PUBLIC_MARVEL_API
   const privkey = process.env.NEXT_SERVER_MARVEL_API
 
-  console.log(pubkey, privkey)
-
   const ts = Date.now()
   const hash = MD5(ts + privkey + pubkey).toString()
 

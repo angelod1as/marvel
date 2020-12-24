@@ -71,8 +71,6 @@ export default function Hero({
   useEffect(() => {
     setLoaded(false)
 
-    console.log('chosen', chosenHero)
-
     if (chosenHero) {
       setHero(chosenHero)
       setLoaded(true)
