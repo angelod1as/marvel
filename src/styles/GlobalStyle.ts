@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle<GlobalProps>`
 
   html, body {
     height: 100%;
+    background-color: black;
   }
 
   body {

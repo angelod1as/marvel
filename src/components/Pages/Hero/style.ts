@@ -1,30 +1,41 @@
+import Button from '@components/Button'
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  min-height: 100vh;
-  height: 100%;
-  min-width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  z-index: 1;
+
   color: white;
 
-  text-align: center;
-
-  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export const HeroInfo = styled.div`
-  margin-bottom: 70px;
+  max-width: 500px;
+  padding: 120px 30px;
 `
 
-export const Title = styled.h2``
+export const Title = styled.h2`
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+  padding: 0;
+  padding-top: 70px;
+  padding-bottom: 30px;
+  margin: 0;
+  display: block;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
 
-export const Alternates = styled.div`
-  font-size: 0.9em;
-  font-style: italic;
+  font-size: 1.5em;
 `
-
 export const Img = styled.img`
   width: 200px;
   height: 200px;
@@ -34,38 +45,6 @@ export const Img = styled.img`
   margin: 30px auto;
   border-radius: 10px;
   border: 1px solid white;
-
-  background-color: ${p => p.theme.color.olive};
-`
-
-export const Ingredients = styled.div`
-  max-width: 400px;
-  margin: 0 auto;
-`
-
-export const Line = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
-  margin: 5px 0;
-`
-
-export const Ingredient = styled.div`
-  margin-right: 10px;
-`
-
-export const Quantity = styled.div`
-  margin-left: 10px;
-`
-
-export const Instructions = styled.div`
-  margin-top: 20px;
-  padding: 0 40px 40px;
-  text-align: left;
-  line-height: 130%;
-  max-width: 600px;
 `
 
 export const Error = styled.div`
@@ -75,3 +54,29 @@ export const Error = styled.div`
     margin-bottom: 30px;
   }
 `
+
+export const StyledButton = styled(Button)`
+  margin-bottom: 100px;
+`
+
+export const Background = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 0;
+  padding: 120px 15px 0 15px;
+  opacity: 0.3;
+
+  img {
+    height: 80%;
+  }
+`
+
+export const Captain = styled.img``
+
+export const Iron = styled.img``

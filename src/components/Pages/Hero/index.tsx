@@ -1,8 +1,8 @@
-import Button from '@components/Button'
-import Logo from '@components/Logo'
 import { HeroStateProps } from '@pages/_app'
+import axios from 'axios'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { useMediaPredicate } from 'react-media-hook'
 
 import {
   Error,
@@ -10,96 +10,51 @@ import {
   Img,
   HeroInfo,
   Title,
-  Ingredients,
-  Line,
-  Ingredient,
-  Instructions,
-  Quantity,
-  Alternates,
+  StyledButton,
+  Captain,
+  Iron,
+  Background,
 } from './style'
-// import query from 'src/functions/query'
-// URGENT: query
+
+import captain from './america-min.png'
+import iron from './iron-min.png'
 
 export interface HeroProps {
   id: number
   name: string
   description: string
-  modified: Date
   resourceURI: string
-  urls: [
-    {
-      type: string
-      url: string
-    }
-  ]
   thumbnail: {
     path: string
     extension: string
   }
-  comics: {
-    available: number
-    returned: number
-    collectionURI: string
-    items: [
-      {
-        resourceURI: string
-        name: string
-      }
-    ]
-  }
-  stories: {
-    available: number
-    returned: number
-    collectionURI: string
-    items: [
-      {
-        resourceURI: string
-        name: string
-        type: string
-      }
-    ]
-  }
-  events: {
-    available: number
-    returned: number
-    collectionURI: string
-    items: [
-      {
-        resourceURI: string
-        name: string
-      }
-    ]
-  }
-  series: {
-    available: number
-    returned: number
-    collectionURI: string
-    items: [
-      {
-        resourceURI: string
-        name: string
-      }
-    ]
-  }
 }
 
-export default function Hero({ chosenHero, setLoaded }: HeroStateProps) {
+export default function Hero({
+  chosenHero,
+  setLoaded,
+  loaded,
+}: HeroStateProps) {
   const [hero, setHero] = useState<HeroProps>()
   const [error, setError] = useState<Error | 'not-found' | null>(null)
   const router = useRouter()
 
-  useEffect(() => {
-    setLoaded(false)
+  const mediaQuery = useMediaPredicate('(min-width: 700px)')
 
-    const fetchData = async (heroId: number) => {
+  const fetchData = useCallback(
+    async (heroId: number) => {
       try {
-        // const response = await query(queryHero)
-        const response = null
-        const heroes: HeroProps[] | null = response
+        const response = await axios.get(`/api/query`, {
+          params: {
+            query: {
+              id: heroId,
+            },
+          },
+        })
+        const hero: HeroProps | null = response?.data?.message?.data?.results[0]
 
-        if (heroes && heroes !== null) {
-          const foundHero = heroes.find(each => each.id === heroId)
-          setHero(foundHero)
+        if (hero && hero !== null) {
+          setHero(hero)
           setLoaded(true)
         } else {
           router.push('/')
@@ -109,58 +64,68 @@ export default function Hero({ chosenHero, setLoaded }: HeroStateProps) {
         setError(error)
         setLoaded(true)
       }
-    }
+    },
+    [router, setLoaded]
+  )
 
-    console.log(chosenHero)
-    if (!chosenHero) {
-      const heroId = +router.query.heroId
-      if (!heroId) {
-        router.push('/')
-      } else {
-        fetchData(heroId)
-      }
-    } else {
+  useEffect(() => {
+    setLoaded(false)
+
+    console.log('chosen', chosenHero)
+
+    if (chosenHero) {
       setHero(chosenHero)
       setLoaded(true)
+      return
     }
-  }, [setLoaded, chosenHero, router])
 
-  return (
-    <Container>
-      HERO
-      {/* <Logo />
-      {!error && hero ? (
-        <HeroInfo>
-          <Title>{hero.name}</Title>
-          {hero.alternateName && (
-            <Alternates>Also know as: {hero.alternateName}</Alternates>
+    const heroId = +router.query.heroId
+
+    if (heroId) {
+      fetchData(heroId)
+    }
+  }, [setLoaded, chosenHero, router, fetchData])
+
+  if (loaded && hero) {
+    const {
+      name,
+      description,
+      thumbnail: { path, extension },
+    } = hero
+    return (
+      <>
+        <Container>
+          {!error ? (
+            <>
+              <Title>{name}</Title>
+
+              <HeroInfo>
+                {path ? <Img src={`${path}.${extension}`} /> : ''}
+                <p>{description || 'No description available'}</p>
+
+                <StyledButton onClick={() => router.push('/')}>
+                  Let's try another hero
+                </StyledButton>
+              </HeroInfo>
+            </>
+          ) : (
+            <Error>
+              <h2>Oops, something went wrong.</h2>
+              <StyledButton onClick={() => router.push('/')}>
+                Let's try another hero
+              </StyledButton>
+            </Error>
           )}
-          <Img src={hero.thumbnail} alt={`picture of a ${hero.name}`} />
-          <h3>Ingredients</h3>
-          <Ingredients>
-            {hero.ingredients.map((each, i) => {
-              return (
-                <Line key={`ingr${i}`}>
-                  <Ingredient>{each.ingredient}</Ingredient>
-                  <Quantity>{each.quantity}</Quantity>
-                </Line>
-              )
-            })}
-          </Ingredients>
-          <h3>Instructions</h3>
-          <Instructions>{hero.instructions}</Instructions>
-          <Button onClick={() => router.push('/')}>
-            Let's hero another one
-          </Button>
-        </HeroInfo>
-      ) : (
-        <Error>
-          <h2>Oops, something went wrong.</h2>
-          <Button onClick={() => router.push('/')}>
-            Let's hero another one
-          </Button>
-        </Error>
-      )} */}
-    </Container>
-  )
+        </Container>
+        {mediaQuery && (
+          <Background>
+            <Captain src={captain} />
+            <Iron src={iron} />
+          </Background>
+        )}
+      </>
+    )
+  }
+
+  return <Container />
 }

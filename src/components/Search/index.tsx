@@ -13,31 +13,38 @@ interface SearchProps {
 export default function Search({ setLoaded, setHeroList }: SearchProps) {
   const router = useRouter()
   const [hero, setHero] = useState('')
-  const [error, setError] = useState<Error | 'not-found' | null>(null)
+  const [error, setError] = useState<Error | 'not-found' | 'empty' | null>(null)
 
   const handleClick = useCallback(async () => {
-    setLoaded(false)
+    if (hero) {
+      setLoaded(false)
 
-    try {
-      const response = await axios.get(`/api/query`, {
-        params: {
-          query: hero,
-        },
-      })
-      const heroes: HeroProps[] | null = response?.data?.message?.data?.results
+      try {
+        const response = await axios.get(`/api/query`, {
+          params: {
+            query: {
+              name: hero,
+            },
+          },
+        })
+        const heroes: HeroProps[] | null =
+          response?.data?.message?.data?.results
 
-      if (heroes && heroes.length > 0) {
-        setHeroList(heroes)
-        setLoaded(true)
-        router.push(`/choose?hero=${hero}`)
-      } else {
-        setError('not-found')
+        if (heroes && heroes.length > 0) {
+          setHeroList(heroes)
+          setLoaded(true)
+          router.push(`/choose?hero=${hero}`)
+        } else {
+          setError('not-found')
+          setLoaded(true)
+        }
+      } catch (error) {
+        console.log(error)
+        setError(error)
         setLoaded(true)
       }
-    } catch (error) {
-      console.log(error)
-      setError(error)
-      setLoaded(true)
+    } else {
+      setError('empty')
     }
   }, [hero, setLoaded, setHeroList, router])
 
@@ -54,6 +61,17 @@ export default function Search({ setLoaded, setHeroList }: SearchProps) {
     [handleClick]
   )
 
+  const errorMessage = () => {
+    switch (error) {
+      case 'not-found':
+        return 'Hero not found, try another one'
+      case 'empty':
+        return 'Empty? Are you sure?'
+      default:
+        return 'Oops, something went wrong, try again'
+    }
+  }
+
   return (
     <Wrapper>
       <Label>Search hero name</Label>
@@ -66,13 +84,7 @@ export default function Search({ setLoaded, setHeroList }: SearchProps) {
         />
         <Button onClick={handleClick}>Go</Button>
       </Flex>
-      <Error>
-        {error
-          ? error === 'not-found'
-            ? 'Hero not found, try another one'
-            : 'Oops, something went wrong, try again'
-          : ''}
-      </Error>
+      <Error>{error && errorMessage()}</Error>
     </Wrapper>
   )
 }

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   height: 100%;
   width: 100%;
+  padding-top: 20px;
 
   color: white;
   background-color: black;
@@ -67,6 +68,4 @@ export const Img = styled.img`
   margin: 15px 10px 15px 0;
   border-radius: 10px;
   border: 1px solid white;
-
-  background-color: ${p => p.theme.color.olive};
 `
