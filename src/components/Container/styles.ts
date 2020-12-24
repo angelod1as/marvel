@@ -37,6 +37,7 @@ export const Logo = styled.h1`
 export const Footer = styled.footer`
   font-size: 0.7em;
   color: white;
+  z-index: 2;
 
   position: fixed;
   bottom: 0px;
