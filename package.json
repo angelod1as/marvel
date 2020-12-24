@@ -1,8 +1,8 @@
 {
-  "name": "chooseyourpoison",
+  "name": "mysuperhero",
   "version": "1.0.0",
   "private": true,
-  "repository": "https://github.com/angelod1as/chooseyourpoison",
+  "repository": "https://github.com/angelod1as/mysuperhero",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
