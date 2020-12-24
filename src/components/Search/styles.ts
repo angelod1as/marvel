@@ -32,4 +32,7 @@ export const Error = styled.p`
   display: block;
   margin-top: 5px;
   font-size: 0.8em;
+  padding: 0;
+  margin-bottom: 0;
+  min-height: 17px;
 `

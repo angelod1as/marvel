@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle<GlobalProps>`
 
   body {
     font-family: 'Exo', sans-serif;
+
+    & > div {
+      height: 100%;
+    }
   }
 
   * {

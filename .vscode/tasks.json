@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "problems",
+      "label": "Show All Problems",
       "command": "tsc",
       "type": "shell",
       "args": ["-w", "-p", "."],
@@ -14,7 +14,7 @@
         "focus": false,
         "panel": "shared",
         "showReuseMessage": true,
-        "clear": false
+        "clear": true
       },
       "isBackground": true,
       "problemMatcher": "$tsc-watch"

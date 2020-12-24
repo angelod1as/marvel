@@ -1,6 +1,7 @@
 import Button from '@components/Button'
 import { HeroProps } from '@components/Pages/Hero'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import { Dispatch, SetStateAction, useCallback, useState } from 'react'
 import { Wrapper, Label, Input, Flex, Error } from './styles'
 
@@ -10,6 +11,7 @@ interface SearchProps {
 }
 
 export default function Search({ setLoaded, setHeroList }: SearchProps) {
+  const router = useRouter()
   const [hero, setHero] = useState('')
   const [error, setError] = useState<Error | 'not-found' | null>(null)
 
@@ -22,12 +24,12 @@ export default function Search({ setLoaded, setHeroList }: SearchProps) {
           query: hero,
         },
       })
-      console.log(response)
-      const heros: HeroProps[] | null = response?.data?.heros
+      const heroes: HeroProps[] | null = response?.data?.message?.data?.results
 
-      if (heros && heros !== null) {
-        setHeroList(heros)
+      if (heroes && heroes.length > 0) {
+        setHeroList(heroes)
         setLoaded(true)
+        router.push(`/choose?hero=${hero}`)
       } else {
         setError('not-found')
         setLoaded(true)
@@ -37,30 +39,40 @@ export default function Search({ setLoaded, setHeroList }: SearchProps) {
       setError(error)
       setLoaded(true)
     }
-  }, [hero, setLoaded, setHeroList])
+  }, [hero, setLoaded, setHeroList, router])
 
   const handleInputChange = useCallback(({ target: { value } }) => {
     setHero(value)
   }, [])
 
+  const handleKeyUp = useCallback(
+    ({ keyCode }) => {
+      if (keyCode === 13) {
+        handleClick()
+      }
+    },
+    [handleClick]
+  )
+
   return (
     <Wrapper>
-      <Label>What's your hero?</Label>
+      <Label>Search hero name</Label>
       <Flex>
         <Input
-          placeholder="Margarita"
+          placeholder="Spider-Man"
           value={hero}
           onChange={handleInputChange}
+          onKeyUp={handleKeyUp}
         />
         <Button onClick={handleClick}>Go</Button>
       </Flex>
-      {error && (
-        <Error>
-          {error === 'not-found'
+      <Error>
+        {error
+          ? error === 'not-found'
             ? 'Hero not found, try another one'
-            : 'Oops, something went wrong, try again'}
-        </Error>
-      )}
+            : 'Oops, something went wrong, try again'
+          : ''}
+      </Error>
     </Wrapper>
   )
 }

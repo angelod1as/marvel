@@ -7,6 +7,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import Loading from '@components/Loading'
 import metatags from '@functions/metatags'
 import { HeroProps } from '@components/Pages/Hero'
+import Container from '@components/Container'
 
 export interface HeroStateProps {
   heroList: HeroProps[]
@@ -38,17 +39,19 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Component
-          {...pageProps}
-          {...{
-            heroList,
-            setHeroList,
-            chosenHero,
-            setChosenHero,
-            loaded,
-            setLoaded,
-          }}
-        />
+        <Container>
+          <Component
+            {...pageProps}
+            {...{
+              heroList,
+              setHeroList,
+              chosenHero,
+              setChosenHero,
+              loaded,
+              setLoaded,
+            }}
+          />
+        </Container>
         {!loaded && <Loading />}
       </ThemeProvider>
     </>
